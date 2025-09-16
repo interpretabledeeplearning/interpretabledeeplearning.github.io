@@ -221,6 +221,7 @@ keep_files:
 
 # Plug-ins
 plugins:
+  - jekyll-scholar
   - jekyll-archives
   - jekyll-email-protect
   - jekyll-feed
@@ -230,7 +231,6 @@ plugins:
   - jekyll-link-attributes
   - jekyll-minifier
   - jekyll-paginate-v2
-  - jekyll/scholar
   - jekyll-sitemap
   - jekyll-toc
   - jekyll-twitter-plugin

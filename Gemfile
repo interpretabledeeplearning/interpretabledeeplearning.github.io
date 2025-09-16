@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
+gem "jekyll", "~> 4.3"
+gem "kramdown-parser-gfm"
 group :jekyll_plugins do
+    gem "jekyll-scholar", "~> 7.1"
     gem 'classifier-reborn'
     gem 'jekyll'
     gem 'jekyll-archives'
@@ -18,7 +21,6 @@ group :jekyll_plugins do
     gem 'mini_racer'
     gem 'unicode_utils'
     gem 'webrick'
-    gem "jekyll-scholar", group: :jekyll_plugins
 end
 group :other_plugins do
     gem 'feedjira'
