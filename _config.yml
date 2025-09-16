@@ -10,7 +10,6 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Inspired by the NeurIPS'22 Workshop on SBMs' <a href="https://score-based-methods-workshop.github.io/" target="_blank">site</a>.
-  Banner by <a href="https://www.freepik.com/free-photo/mysterious-glowing-galaxy-creates-deep-blue-backdrop-generated-by-ai_40967996.htm#query=fractal&position=0&from_view=keyword&track=sph&uuid=940d1932-88ce-4ca4-8638-99ae5fff72e8">vecstock</a> on Freepik.
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicons/brain_favicon.svg # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
