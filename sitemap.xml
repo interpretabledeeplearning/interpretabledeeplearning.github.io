@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/</loc>
+<loc>https://interpretabledeeplearning.github.io/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/resources/</loc>
+<loc>https://interpretabledeeplearning.github.io/resources/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/schedule/</loc>
+<loc>https://interpretabledeeplearning.github.io/schedule/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/tutorial/</loc>
+<loc>https://interpretabledeeplearning.github.io/tutorial/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/lighthouse_results/desktop/alshedivat_github_io_al_folio_.html</loc>
+<loc>https://interpretabledeeplearning.github.io/lighthouse_results/desktop/alshedivat_github_io_al_folio_.html</loc>
 <lastmod>2025-09-16T14:22:27+01:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/lighthouse_results/mobile/alshedivat_github_io_al_folio_.html</loc>
+<loc>https://interpretabledeeplearning.github.io/lighthouse_results/mobile/alshedivat_github_io_al_folio_.html</loc>
 <lastmod>2025-09-16T14:22:27+01:00</lastmod>
 </url>
 </urlset>
