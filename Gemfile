@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
-gem "jekyll", "~> 4.3"
-gem "kramdown-parser-gfm"
+
 group :jekyll_plugins do
-    gem "jekyll-scholar", "~> 7.1"
+    gem "jekyll-scholar"
     gem 'classifier-reborn'
     gem 'jekyll'
     gem 'jekyll-archives'
