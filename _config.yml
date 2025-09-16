@@ -219,6 +219,7 @@ keep_files:
   - CNAME
   - .nojekyll
 
+
 # Plug-ins
 plugins:
   - jekyll-scholar
