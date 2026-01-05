@@ -11,9 +11,9 @@ description:
 <div style="margin: auto; text-align: center;">
   Tutorial held in conjunction with <a href="https://aaai.org/conference/aaai/aaai-26/">AAAI 2026</a><br>
 
-  Singapore EXPO (Room TBC), Singapore<br>
+  Singapore EXPO (Room Garnet 218), Singapore<br>
 
-  January 20th or 21st (exact date and time TBC)<br>
+  January 21st, 2026 from 8:30am to 12:30pm<br>
 
 </div>
 
@@ -40,16 +40,16 @@ Please see [here](https://conceptlearning.github.io/tutorial/) for further detai
 ## Important Details
 
 
-- **Date**: This tutorial will be held on either on January 20th or January 21st, 2026 (exact date and time TBD).
-- **Conference**: The Fortieth Annual [AAAI Conference on Artificial Intelligence](https://aaai.org/conference/aaai/aaai-26/).
-- **Location**: Singapore EXPO (Room TBC), Singapore.
+- **Date**: This tutorial will be held on January 21st, 2026 from 8:30am to 12:30 pm (incl. 30-minute break).
+- **Conference**: The 40th Annual [AAAI Conference on Artificial Intelligence](https://aaai.org/conference/aaai/aaai-26/).
+- **Location**: Singapore EXPO (Room: Garnet 218), Singapore.
 - **Modality**: In-person event with the option to join online via Underline (requires AAAI tutorial registration).
 
 
 ## Presenters
   <div class="row projects pt-1 pb-1" style="justify-content: center;">
       <div class="col-sm-4">
-          {% include people.html name="Mateo Espinosa Zarlenga" affiliation="University of Cambridge, UK" url="https://mateoespinosa.github.io/" img="/assets/img/people/mateo.jpg" %}
+          {% include people.html name="Mateo Espinosa Zarlenga" affiliation="University of Oxford, UK" url="https://mateoespinosa.github.io/" img="/assets/img/people/mateo.jpg" %}
       </div>
       <div class="col-sm-4">
         {% include people.html name="Pietro Barbiero" affiliation="IBM Research, Switzerland" url="https://www.pietrobarbiero.eu/" img="/assets/img/people/pietro.jpeg" %}
@@ -60,4 +60,4 @@ Please see [here](https://conceptlearning.github.io/tutorial/) for further detai
 ## Contact
 
 For any questions, please do not hesitate to contact Mateo at
-[me466@cam.ac.uk](mailto:me466@cam.ac.uk).
+[mateo.espinosazarlenga@trinity.ox.uk](mailto:mateo.espinosazarlenga@trinity.ox.uk).
