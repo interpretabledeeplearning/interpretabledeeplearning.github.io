@@ -8,8 +8,6 @@ nav_order: 2
 
 # Tutorial Material
 
-# Tutorial Material
-
 You can find our  **tutorial's slides** here ([pdf](/assets/documents/2026_AAAI_Foundations_Of_Interpretable_Deep_Learning_Tutorial_Slides_Final.pdf)).
 
 
