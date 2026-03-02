@@ -49,6 +49,17 @@ Each session features paper presentations, discussions, and Q&A, with recordings
   </div>
 </div>
 
+## Future Events
+
+<div class="future-events-calendar mb-4">
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src=interpretabledl%40gmail.com&ctz=UTC&mode=MONTH&showPrint=0"
+    title="Interpretable Deep Learning Reading Group Future Events"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
 ## Resources
 
 <div class="row mt-4">

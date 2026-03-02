@@ -1232,6 +1232,20 @@ swiper-container {
   margin-bottom: 1rem;
 }
 
+.future-events-calendar {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.7rem;
+  overflow: hidden;
+  background: var(--global-bg-color);
+}
+
+.future-events-calendar iframe {
+  display: block;
+  width: 100%;
+  min-height: 680px;
+  border: 0;
+}
+
 .people-card {
   height: 100%;
   display: flex;
@@ -1333,5 +1347,9 @@ swiper-container {
   .feature-card-lg,
   .session-card-body {
     padding: 1.4rem;
+  }
+
+  .future-events-calendar iframe {
+    min-height: 540px;
   }
 }
