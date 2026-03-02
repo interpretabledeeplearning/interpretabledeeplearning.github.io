@@ -1,28 +1,167 @@
-// Generate and download iCalendar (.ics) file
+var SESSION_TBD = "TBD";
+var YOUTUBE_LIVE_URL = "https://www.youtube.com/@InterpretableDeepLearning/live";
+
+function formatSessionDateTime(startDate, endDate) {
+  if (!startDate || Number.isNaN(startDate.getTime())) {
+    return SESSION_TBD;
+  }
+
+  var dateOptions = { year: "numeric", month: "long", day: "numeric" };
+  var timeOptions = { hour: "numeric", minute: "2-digit", timeZoneName: "short" };
+  var startDateText = startDate.toLocaleDateString(undefined, dateOptions);
+  var startTimeText = startDate.toLocaleTimeString(undefined, timeOptions);
+
+  if (!endDate || Number.isNaN(endDate.getTime())) {
+    return startDateText + " at " + startTimeText;
+  }
+
+  var endDateText = endDate.toLocaleDateString(undefined, dateOptions);
+  var endTimeText = endDate.toLocaleTimeString(undefined, timeOptions);
+  if (startDate.toDateString() === endDate.toDateString()) {
+    return startDateText + " from " + startTimeText + " to " + endTimeText;
+  }
+
+  return startDateText + " " + startTimeText + " to " + endDateText + " " + endTimeText;
+}
+
+function getTextOrTbd(value) {
+  if (typeof value !== "string") {
+    return SESSION_TBD;
+  }
+  var trimmed = value.trim();
+  return trimmed ? trimmed : SESSION_TBD;
+}
+
+function setText(id, value) {
+  var node = document.getElementById(id);
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function setPaperLink(paperUrl) {
+  var paperNode = document.getElementById("paper-link");
+  if (!paperNode) {
+    return;
+  }
+
+  if (typeof paperUrl === "string" && /^https?:\/\//i.test(paperUrl.trim())) {
+    paperNode.href = paperUrl.trim();
+    paperNode.target = "_blank";
+    paperNode.rel = "noopener noreferrer";
+    paperNode.classList.remove("disabled");
+    paperNode.removeAttribute("aria-disabled");
+    paperNode.removeAttribute("tabindex");
+    return;
+  }
+
+  paperNode.href = "#";
+  paperNode.removeAttribute("target");
+  paperNode.removeAttribute("rel");
+  paperNode.classList.add("disabled");
+  paperNode.setAttribute("aria-disabled", "true");
+  paperNode.setAttribute("tabindex", "-1");
+}
+
+function setSessionDate(startDate, endDate, location) {
+  var dateNode = document.getElementById("session-date");
+  if (!dateNode) {
+    return;
+  }
+
+  if (startDate && !Number.isNaN(startDate.getTime())) {
+    dateNode.dataset.startDate = startDate.toISOString();
+    if (endDate && !Number.isNaN(endDate.getTime())) {
+      dateNode.dataset.endDate = endDate.toISOString();
+    } else {
+      delete dateNode.dataset.endDate;
+    }
+    dateNode.dataset.location = location || "Online";
+    dateNode.innerHTML = formatSessionDateTime(startDate, endDate);
+    return;
+  }
+
+  delete dateNode.dataset.startDate;
+  delete dateNode.dataset.endDate;
+  delete dateNode.dataset.location;
+  dateNode.innerHTML = SESSION_TBD;
+}
+
+function applyNextSessionData(nextSession) {
+  var title = getTextOrTbd(nextSession && nextSession.title);
+  var speaker = getTextOrTbd(nextSession && nextSession.speaker);
+  var abstract = getTextOrTbd((nextSession && nextSession.abstract) || (nextSession && nextSession.description));
+
+  setText("session-title", title);
+  setText("session-speaker", speaker);
+  setText("session-abstract", abstract);
+
+  var startDate = nextSession && nextSession.start ? new Date(nextSession.start) : null;
+  var endDate = nextSession && nextSession.end ? new Date(nextSession.end) : null;
+  setSessionDate(startDate, endDate, nextSession && nextSession.location);
+
+  var meetingNode = document.getElementById("meeting-link");
+  if (meetingNode) {
+    meetingNode.href = YOUTUBE_LIVE_URL;
+  }
+
+  setPaperLink(nextSession && nextSession.paper_url);
+}
+
+function loadNextSession() {
+  var sessionCard = document.getElementById("next-session-card");
+  if (!sessionCard || !window.fetch) {
+    return;
+  }
+
+  var dataUrl = sessionCard.dataset && sessionCard.dataset.nextSessionUrl;
+  if (!dataUrl) {
+    applyNextSessionData(null);
+    return;
+  }
+
+  fetch(dataUrl, { cache: "no-store" })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      return response.json();
+    })
+    .then(function (payload) {
+      applyNextSessionData((payload && payload.next_session) || null);
+    })
+    .catch(function () {
+      applyNextSessionData(null);
+    });
+}
+
 function generateICS(eventData) {
-  var title = (eventData && eventData.title) || "TBA";
+  var title = (eventData && eventData.title) || "Interpretable Deep Learning Reading Group";
   var description = (eventData && eventData.description) || "";
   var location = (eventData && eventData.location) || "";
   var startDate = (eventData && eventData.startDate) || null;
   var endDate = (eventData && eventData.endDate) || null;
   var url = (eventData && eventData.url) || "";
 
-  // If no date is set, return early
   if (!startDate) {
     alert("Event date is not yet announced. Please check back later!");
     return;
   }
 
-  // Format date to iCal format (YYYYMMDDTHHmmssZ)
   function formatDate(date) {
     return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   }
 
-  var start = formatDate(new Date(startDate));
-  // Default to 1 hour duration if an end time is not provided.
-  var end = formatDate(new Date(endDate || new Date(new Date(startDate).getTime() + 60 * 60 * 1000)));
+  var startDateObj = new Date(startDate);
+  if (Number.isNaN(startDateObj.getTime())) {
+    alert("Event date format is invalid. Please check back later!");
+    return;
+  }
 
-  // Create iCal content
+  var endDateObj = endDate ? new Date(endDate) : new Date(startDateObj.getTime() + 60 * 60 * 1000);
+  var start = formatDate(startDateObj);
+  var end = formatDate(endDateObj);
+
   var icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -44,7 +183,6 @@ function generateICS(eventData) {
     "END:VCALENDAR",
   ].join("\r\n");
 
-  // Create blob and download
   var blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
   var link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
@@ -54,18 +192,16 @@ function generateICS(eventData) {
   document.body.removeChild(link);
 }
 
-// Example usage - call this function when the button is clicked
 function addReadingGroupToCalendar() {
   var titleNode = document.getElementById("session-title");
   var abstractNode = document.getElementById("session-abstract");
   var dateNode = document.getElementById("session-date");
   var meetingNode = document.getElementById("meeting-link");
 
-  // Get event data from the page
   var eventData = {
     title: (titleNode && titleNode.textContent) || "Interpretable Deep Learning Reading Group",
     description: (abstractNode && abstractNode.textContent) || "",
-    location: "Online (Zoom)",
+    location: (dateNode && dateNode.dataset && dateNode.dataset.location) || "Online (Zoom)",
     startDate: (dateNode && dateNode.dataset && dateNode.dataset.startDate) || null,
     endDate: (dateNode && dateNode.dataset && dateNode.dataset.endDate) || null,
     url: (meetingNode && meetingNode.href) || "",
@@ -73,3 +209,5 @@ function addReadingGroupToCalendar() {
 
   generateICS(eventData);
 }
+
+document.addEventListener("DOMContentLoaded", loadNextSession);

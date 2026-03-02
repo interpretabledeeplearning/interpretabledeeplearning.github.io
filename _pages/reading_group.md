@@ -13,25 +13,35 @@ This reading group brings together researchers and practitioners interested in i
 We discuss recent papers, share insights, and explore methods that make deep learning models more transparent and understandable.
 Each session features paper presentations, discussions, and Q&A, with recordings available on our YouTube channel.
 
+<div class="mb-4 text-center">
+  <a
+    href="https://calendar.google.com/calendar/u/2?cid=aW50ZXJwcmV0YWJsZWRsQGdtYWlsLmNvbQ"
+    class="btn btn-outline-secondary btn-lg"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Follow Calendar</a
+  >
+</div>
 
-<div class="card mb-4 session-card">
+<div id="next-session-card" class="card mb-4 session-card" data-next-session-url="{{ '/assets/data/reading-group-next-session.json' | relative_url }}">
   <div class="card-body session-card-body">
     <div class="row align-items-center">
       <div class="col-md-8">
         <h3 class="card-title session-title">Next Session</h3>
-        <p class="mb-2"><strong>Speaker:</strong> <span id="session-speaker">TBA</span></p>
-        <p class="mb-2" id="session-date" data-start-date="2026-03-15T14:00:00Z" data-end-date="2026-03-15T15:00:00Z">
-          <strong>Date & Time:</strong> March 15, 2026 at 2:00 PM UTC
-        </p>
         <h5 class="mt-4 mb-2">Title</h5>
-        <p id="session-title" class="mb-3">TBA</p>
+        <p id="session-title" class="mb-3">TBD</p>
+        <h5 class="mt-4 mb-2">Speaker</h5>
+        <p class="mb-2" id="session-speaker">TBD</span></p>
+        <h5 class="mt-4 mb-2">Date & Time</h5>
+        <p class="mb-2" id="session-date"> TBD</p>
         <h5 class="mb-2">Abstract</h5>
-        <p id="session-abstract" class="session-abstract">Details will be announced soon. Stay tuned for updates on our next reading group session.</p>
+        <p id="session-abstract" class="session-abstract">TBD</p>
       </div>
       <div class="col-md-4 text-center">
         <div class="session-actions">
           <div class="session-emoji">🗓️</div>
           <a href="https://www.youtube.com/@InterpretableDeepLearning/live" id="meeting-link" class="btn btn-primary btn-lg mb-3 w-100">Join meeting</a>
+          <a href="#" id="paper-link" class="btn btn-outline-secondary btn-lg mb-3 w-100 disabled" aria-disabled="true" tabindex="-1">Link to Paper</a>
           <button onclick="addReadingGroupToCalendar()" class="btn btn-outline-primary btn-lg w-100">Add to calendar</button>
         </div>
       </div>

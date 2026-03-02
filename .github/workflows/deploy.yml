@@ -10,6 +10,8 @@ on:
       - main
       - master
   workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
 
 permissions:
   contents: read
@@ -37,6 +39,14 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sync Reading Group Calendar
+        run: node scripts/fetch-reading-group-next-session.mjs
+
       - name: Build Jekyll
         env:
           JEKYLL_ENV: production
@@ -48,7 +58,7 @@ jobs:
           path: ./_site
 
   deploy:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
