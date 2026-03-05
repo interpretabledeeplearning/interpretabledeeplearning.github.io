@@ -85,6 +85,9 @@ We are a community of researchers interested in <emph>Interpretable Deep Learnin
           {% include people.html name="Giuseppe Marra" affiliation="Professor at KU Leuven, BE" url="https://www.giuseppemarra.com/" img="/assets/img/people/giuseppe.png" %}
       </div>
       <div class="col-sm-6 col-md-4 mb-3">
+          {% include people.html name="Sonali Parbhoo" affiliation="Professor at Imperial College London, UK" url="https://sites.google.com/view/sonali-parbhoo/home" img="/assets/img/people/sonali.png" %}
+      </div>
+      <div class="col-sm-6 col-md-4 mb-3">
           {% include people.html name="Alberto Termine" affiliation="Researcher IDSIA USI-SUPSI, CH" url="https://sites.google.com/view/albertotermine/home-page" img="/assets/img/people/alberto.png" %}
       </div>
     </div>
