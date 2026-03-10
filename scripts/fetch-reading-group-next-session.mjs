@@ -445,7 +445,7 @@ export function normalizeNextSession(event) {
   const end = event.end instanceof Date && !Number.isNaN(event.end.getTime()) ? event.end : defaultEnd;
 
   return {
-    title: sessionFields.title || SESSION_TBD,
+    title: sessionFields.title || (event.summary && event.summary.trim()) || SESSION_TBD,
     speaker: sessionFields.speaker || SESSION_TBD,
     abstract: sessionFields.abstract || SESSION_TBD,
     description: sessionFields.abstract || SESSION_TBD,
@@ -509,10 +509,20 @@ export function downloadText(url, redirectsLeft = 4) {
 export function selectNextSessionFromIcs(icsText, now = new Date()) {
   const events = parseIcsEvents(icsText);
   const nextEvent = pickNextEvent(events, now);
+
+  const upcomingEvents = events
+    .filter((event) => event.start instanceof Date && !Number.isNaN(event.start.getTime()))
+    .sort((a, b) => a.start.getTime() - b.start.getTime())
+    .filter((event) => {
+      const end = event.end instanceof Date && !Number.isNaN(event.end.getTime()) ? event.end : event.start;
+      return end.getTime() >= now.getTime();
+    });
+
   return {
     events,
     nextEvent,
     nextSession: nextEvent ? normalizeNextSession(nextEvent) : null,
+    upcomingSessions: upcomingEvents.map(normalizeNextSession),
   };
 }
 
@@ -558,7 +568,10 @@ export async function buildNextSessionPayload({
     }
   }
 
-  return selection.nextSession;
+  return {
+    nextSession: selection.nextSession,
+    upcomingSessions: selection.upcomingSessions,
+  };
 }
 
 export async function writePayload(payload, outputPath = DEFAULT_OUTPUT_PATH) {
@@ -645,15 +658,18 @@ export async function runCli(argv = process.argv.slice(2)) {
       ics_url: options.icsUrl,
     },
     next_session: null,
+    upcoming_sessions: [],
   };
 
   try {
-    payload.next_session = await buildNextSessionPayload({
+    const result = await buildNextSessionPayload({
       icsFile: options.icsFile,
       icsUrl: options.icsUrl,
       now: options.now,
       debug: options.debug,
     });
+    payload.next_session = result.nextSession;
+    payload.upcoming_sessions = result.upcomingSessions;
   } catch (error) {
     payload.error = getErrorMessage(error);
     if (options.debug && error instanceof Error && error.stack) {
@@ -663,7 +679,7 @@ export async function runCli(argv = process.argv.slice(2)) {
 
   await writePayload(payload, options.outputPath);
   if (payload.next_session) {
-    console.log(`Saved next session: ${payload.next_session.title}`);
+    console.log(`Saved next session: ${payload.next_session.title} (${payload.upcoming_sessions.length} upcoming total)`);
   } else {
     console.log("Saved empty next-session payload (calendar unavailable or no upcoming events).");
   }
@@ -682,6 +698,7 @@ if (isMain) {
         ics_url: DEFAULT_ICS_URL,
       },
       next_session: null,
+      upcoming_sessions: [],
       error: getErrorMessage(error),
     };
     await writePayload(fallbackPayload, DEFAULT_OUTPUT_PATH);

@@ -87,25 +87,59 @@ function setSessionDate(startDate, endDate, location) {
   dateNode.innerHTML = SESSION_TBD;
 }
 
+function setNoSessionsState(visible) {
+  var noSessionsEl = document.getElementById("no-sessions-message");
+  var sessionDetailsEl = document.getElementById("session-details");
+  if (noSessionsEl) {
+    noSessionsEl.style.display = visible ? "" : "none";
+  }
+  if (sessionDetailsEl) {
+    sessionDetailsEl.style.display = visible ? "none" : "";
+  }
+}
+
 function applyNextSessionData(nextSession) {
-  var title = getTextOrTbd(nextSession && nextSession.title);
-  var speaker = getTextOrTbd(nextSession && nextSession.speaker);
-  var abstract = getTextOrTbd((nextSession && nextSession.abstract) || (nextSession && nextSession.description));
+  if (!nextSession) {
+    setNoSessionsState(true);
+    return;
+  }
+  setNoSessionsState(false);
+
+  var title = getTextOrTbd(nextSession.title);
+  var speaker = getTextOrTbd(nextSession.speaker);
+  var abstract = getTextOrTbd(nextSession.abstract || nextSession.description);
 
   setText("session-title", title);
   setText("session-speaker", speaker);
   setText("session-abstract", abstract);
 
-  var startDate = nextSession && nextSession.start ? new Date(nextSession.start) : null;
-  var endDate = nextSession && nextSession.end ? new Date(nextSession.end) : null;
-  setSessionDate(startDate, endDate, nextSession && nextSession.location);
+  var startDate = nextSession.start ? new Date(nextSession.start) : null;
+  var endDate = nextSession.end ? new Date(nextSession.end) : null;
+  setSessionDate(startDate, endDate, nextSession.location);
 
   var meetingNode = document.getElementById("meeting-link");
   if (meetingNode) {
     meetingNode.href = YOUTUBE_LIVE_URL;
   }
 
-  setPaperLink(nextSession && nextSession.paper_url);
+  setPaperLink(nextSession.paper_url);
+}
+
+function pickSessionFromUpcoming(upcomingSessions) {
+  if (!Array.isArray(upcomingSessions)) {
+    return null;
+  }
+  var now = new Date();
+  for (var i = 0; i < upcomingSessions.length; i++) {
+    var session = upcomingSessions[i];
+    var endTime = session.end ? new Date(session.end) : null;
+    var startTime = session.start ? new Date(session.start) : null;
+    var effectiveEnd = endTime && !isNaN(endTime.getTime()) ? endTime : startTime;
+    if (effectiveEnd && effectiveEnd.getTime() >= now.getTime()) {
+      return session;
+    }
+  }
+  return null;
 }
 
 function loadNextSession() {
@@ -128,7 +162,13 @@ function loadNextSession() {
       return response.json();
     })
     .then(function (payload) {
-      applyNextSessionData((payload && payload.next_session) || null);
+      var session = null;
+      if (payload && Array.isArray(payload.upcoming_sessions) && payload.upcoming_sessions.length > 0) {
+        session = pickSessionFromUpcoming(payload.upcoming_sessions);
+      } else if (payload && payload.next_session) {
+        session = payload.next_session;
+      }
+      applyNextSessionData(session);
     })
     .catch(function () {
       applyNextSessionData(null);
