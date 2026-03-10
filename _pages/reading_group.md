@@ -78,7 +78,7 @@ Each session features paper presentations, discussions, and Q&A, with recordings
     </a>
   </div>
   <div class="col-md-6 mb-4">
-    <a href="/resources/" class="card-link-reset">
+    <a href="/reading_group_papers/" class="card-link-reset">
       <div class="card hoverable text-center feature-card feature-card-lg">
         <div class="feature-icon">📚</div>
         <h4 class="feature-title feature-title-lg">Previously Presented Papers</h4>

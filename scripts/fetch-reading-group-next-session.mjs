@@ -11,6 +11,7 @@ export const SHARABLE_CALENDAR_URL =
 export const YOUTUBE_LIVE_URL = "https://www.youtube.com/@InterpretableDeepLearning/live";
 export const DEFAULT_ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
 export const DEFAULT_OUTPUT_PATH = "assets/data/reading-group-next-session.json";
+export const DEFAULT_DATA_OUTPUT_PATH = "_data/reading_group_sessions.json";
 export const SESSION_TBD = "TBD";
 
 function getErrorMessage(error) {
@@ -386,10 +387,29 @@ export function parseDescriptionSections(description) {
   return sections;
 }
 
+const ABSTRACT_BOILERPLATE_PATTERNS = [
+  /^youtube\s+live\s+session/i,
+  /^interpretable\s+deep\s+learning\s+website/i,
+  /^join\s+(with\s+)?google\s+meet/i,
+  /^join\s+zoom\s+meeting/i,
+  /^learn\s+more\s+about\s+meet/i,
+  /^https?:\/\//i,
+];
+
+function truncateAtBoilerplate(lines) {
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (trimmed && ABSTRACT_BOILERPLATE_PATTERNS.some((pattern) => pattern.test(trimmed))) {
+      return lines.slice(0, i);
+    }
+  }
+  return lines;
+}
+
 export function parseSessionFields(description) {
   const sections = parseDescriptionSections(description);
   const title = firstNonEmptyLine(sections.title);
-  const abstractLines = trimEmptyEdges(sections.abstract);
+  const abstractLines = trimEmptyEdges(truncateAtBoilerplate(sections.abstract || []));
   const abstract = abstractLines.length > 0 ? abstractLines.join("\n").trim() : null;
   const speaker = chooseSpeaker(sections.booked_by) || chooseSpeaker(sections.speaker);
   const paperUrl = getFirstUrl((sections.paper_link || []).join("\n"));
@@ -510,19 +530,30 @@ export function selectNextSessionFromIcs(icsText, now = new Date()) {
   const events = parseIcsEvents(icsText);
   const nextEvent = pickNextEvent(events, now);
 
-  const upcomingEvents = events
-    .filter((event) => event.start instanceof Date && !Number.isNaN(event.start.getTime()))
-    .sort((a, b) => a.start.getTime() - b.start.getTime())
+  const datedEvents = events.filter(
+    (event) => event.start instanceof Date && !Number.isNaN(event.start.getTime())
+  );
+
+  const upcomingEvents = datedEvents
     .filter((event) => {
       const end = event.end instanceof Date && !Number.isNaN(event.end.getTime()) ? event.end : event.start;
       return end.getTime() >= now.getTime();
-    });
+    })
+    .sort((a, b) => a.start.getTime() - b.start.getTime());
+
+  const pastEvents = datedEvents
+    .filter((event) => {
+      const end = event.end instanceof Date && !Number.isNaN(event.end.getTime()) ? event.end : event.start;
+      return end.getTime() < now.getTime();
+    })
+    .sort((a, b) => b.start.getTime() - a.start.getTime()); // most recent first
 
   return {
     events,
     nextEvent,
     nextSession: nextEvent ? normalizeNextSession(nextEvent) : null,
     upcomingSessions: upcomingEvents.map(normalizeNextSession),
+    pastSessions: pastEvents.map(normalizeNextSession),
   };
 }
 
@@ -571,6 +602,7 @@ export async function buildNextSessionPayload({
   return {
     nextSession: selection.nextSession,
     upcomingSessions: selection.upcomingSessions,
+    pastSessions: selection.pastSessions,
   };
 }
 
@@ -659,6 +691,7 @@ export async function runCli(argv = process.argv.slice(2)) {
     },
     next_session: null,
     upcoming_sessions: [],
+    past_sessions: [],
   };
 
   try {
@@ -670,6 +703,7 @@ export async function runCli(argv = process.argv.slice(2)) {
     });
     payload.next_session = result.nextSession;
     payload.upcoming_sessions = result.upcomingSessions;
+    payload.past_sessions = result.pastSessions;
   } catch (error) {
     payload.error = getErrorMessage(error);
     if (options.debug && error instanceof Error && error.stack) {
@@ -678,6 +712,7 @@ export async function runCli(argv = process.argv.slice(2)) {
   }
 
   await writePayload(payload, options.outputPath);
+  await writePayload(payload, DEFAULT_DATA_OUTPUT_PATH);
   if (payload.next_session) {
     console.log(`Saved next session: ${payload.next_session.title} (${payload.upcoming_sessions.length} upcoming total)`);
   } else {
@@ -699,9 +734,11 @@ if (isMain) {
       },
       next_session: null,
       upcoming_sessions: [],
+      past_sessions: [],
       error: getErrorMessage(error),
     };
     await writePayload(fallbackPayload, DEFAULT_OUTPUT_PATH);
+    await writePayload(fallbackPayload, DEFAULT_DATA_OUTPUT_PATH);
     console.error(fallbackPayload.error);
   });
 }
