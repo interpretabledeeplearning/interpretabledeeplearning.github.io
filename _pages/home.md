@@ -96,5 +96,5 @@ We are a community of researchers interested in <emph>Interpretable Deep Learnin
 
 ## Contact
 For questions, please contact Mateo at
-[mateo.espinosazarlenga@trinity.ox.uk](mailto:mateo.espinosazarlenga@trinity.ox.uk)
+[mateo.espinosazarlenga@trinity.ox.ac.uk](mailto:mateo.espinosazarlenga@trinity.ox.ac.uk)
 or Pietro at [pietro.barbiero@ibm.com](mailto:pietro.barbiero@ibm.com).
