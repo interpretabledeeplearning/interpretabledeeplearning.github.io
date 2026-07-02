@@ -19,6 +19,13 @@ as this is a fast-moving field and we have only so much space we can use here.
 Nevertheless, we still hope you may find this list helpful if you want to get
 a sense of where the field is and where it is heading.
 
+#### Foundations of Interpretable Machine Learning
+We include here some of the works that discuss foundational works in interpretable machine learning using general theoretical frameworks:
+
+<div class="publications">
+  {% bibliography -f theory%}
+</div>
+
 #### Concept Learning Surveys
 These are some of the surveys that touch on concept representation learning
 and its use in interpretable/explainable AI:
@@ -26,6 +33,7 @@ and its use in interpretable/explainable AI:
 <div class="publications">
   {% bibliography -f surveys%}
 </div>
+
 
 #### Various Aspects of XAI
 Similarly, there are several key surveys/works that discuss formalisms,
