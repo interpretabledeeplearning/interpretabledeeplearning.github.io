@@ -1,7 +1,7 @@
 ---
 layout: default
-permalink: /tutorials/tutorial_essai2026/
-title: ESSAI 2026
+permalink: /tutorials/tutorial_uai2026/
+title: UAI 2026
 nav: false
 ---
 
