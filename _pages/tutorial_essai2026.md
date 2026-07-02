@@ -16,6 +16,9 @@ nav: false
 
 </div>
 
+
+## Material
+
 Slides will be posted here after the event.
 
 If we get access to a recording of our presentation, we will include it in this
@@ -23,6 +26,61 @@ section as soon as possible.
 
 For a **complete bibliography** of the topics and works discussed in this tutorial,
 please refer to our [resources](/resources/) section.
+
+
+## Schedule
+
+Below is the expected (rough) schedule for this tutorial where we indicate next to each
+section who will be presenting that section's material
+(PB for "Pietro Barbiero" and GM for "Giuseppe Marra").
+
+
+<div class="row" style="display:table; width: 100%;">
+  <div class="col-xs-20">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Day</th>
+          <th>Topic</th>
+          <th>Main reference</th>
+        </tr>
+        <tr>
+          <td>Day 1</td>
+          <td>
+            <b>Interpretability Theory</b> (Presented by PB)
+          </td>
+          <td>["The Standard Interpretable Model"](https://arxiv.org/abs/2606.12289)</td>
+        </tr>
+        <tr>
+          <td>Day 2</td>
+          <td>
+            <b>Blueprint for interpretable models + interpretability in PyTorch</b> (Presented by PB)
+          </td>
+            <td>["PyC: interpretable models in PyTorch"](https://pytorch-concepts.readthedocs.io/en/latest/)</td> 
+        </tr>
+        <tr>
+          <td>Day 3</td>
+          <td>
+            <b>Concept representations</b> (Presented by GM)
+          </td>
+          <td>TBR</td>
+        </tr>
+        <tr>
+          <td>Day 4</td>
+          <td>
+            <b>Concept-based predictors</b> (Presented by GM)
+          </td>
+          <td>TBR</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+#### Required Background
+
+Our material will assume a basic knowledge of ML (e.g., foundations of supervised learning, experimental design, basic probabilistic modelling, etc.), with particular emphasis on a solid Deep Learning foundation (e.g., tensor calculus, neural networks, backpropagation, etc.). Concepts that may require mathematical tools/expertise beyond those one would expect to be shared among the AAAI community will be (re)introduced in our tutorial.
+
 
 ## Presenters
   <div class="row projects pt-1 pb-1" style="justify-content: center;">
@@ -33,3 +91,24 @@ please refer to our [resources](/resources/) section.
         {% include people.html name="Pietro Barbiero" affiliation="IBM Research, Switzerland" url="https://www.pietrobarbiero.eu/" img="/assets/img/people/pietro.jpeg" %}
       </div>
   </div>
+
+
+## Citing This Tutorial
+
+If you found this tutorial useful for your research, blogs, or work, please cite it as follows:
+
+```
+Marra G. and Barbiero P. (2026). Foundations of Concept-Based Interpretable Deep Learning. Advanced course at the European Summer School on Artificial Intelligence (ESSAI). https://interpretabledeeplearning.github.io/
+```
+
+Or use the following bibtex entry:
+
+```latex
+@misc{interpretabledl2026essai,
+  title        = {Foundations of Concept-Based Interpretable Deep Learning (ESSAI-2026)},
+  author       = {Marra G. and Barbiero P.},
+  year         = {2026},
+  howpublished = {Advanced course at the European Summer School on Artificial Intelligence (ESSAI)},
+  url          = {https://interpretabledeeplearning.github.io/}
+}
+```
