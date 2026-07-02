@@ -42,34 +42,41 @@ section who will be presenting that section's material
         <tr>
           <th>Day</th>
           <th>Topic</th>
+          <th>Presenter</th>
           <th>Main reference</th>
         </tr>
         <tr>
           <td>Day 1</td>
           <td>
-            <b>Interpretability Theory</b> (Presented by PB)
+            <b>Interpretability Theory</b>
           </td>
-          <td>["The Standard Interpretable Model"](https://arxiv.org/abs/2606.12289)</td>
+          <td>PB</td>
+          <td><a href="https://arxiv.org/abs/2606.12289">The Standard Interpretable Model</a></td>
         </tr>
         <tr>
           <td>Day 2</td>
           <td>
-            <b>Blueprint for interpretable models + interpretability in PyTorch</b> (Presented by PB)
+            <b>Blueprint for interpretable models + interpretability in PyTorch</b>
           </td>
-            <td>["PyC: interpretable models in PyTorch"](https://pytorch-concepts.readthedocs.io/en/latest/)</td> 
+          <td>PB</td>
+          <td>    
+            <a href="https://pytorch-concepts.readthedocs.io/en/latest/">PyC: interpretable models in PyTorch</a>
+          </td> 
         </tr>
         <tr>
           <td>Day 3</td>
           <td>
-            <b>Concept representations</b> (Presented by GM)
+            <b>Concept representations</b>
           </td>
+          <td>GM</td>
           <td>TBR</td>
         </tr>
         <tr>
           <td>Day 4</td>
           <td>
-            <b>Concept-based predictors</b> (Presented by GM)
+            <b>Concept-based predictors</b>
           </td>
+          <td>GM</td>
           <td>TBR</td>
         </tr>
       </tbody>
