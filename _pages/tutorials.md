@@ -11,6 +11,7 @@ children:
 #  - title: divider
   - title: UAI 2026 (upcoming)
     permalink: /tutorials/tutorial_uai2026/
+  - title: divider
   - title: ESSAI 2026 (upcoming)
     permalink: /tutorials/tutorial_essai2026/
   - title: divider
