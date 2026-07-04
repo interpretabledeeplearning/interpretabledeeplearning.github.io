@@ -77,7 +77,9 @@ section who will be presenting that section's material
             <b>Concept-based predictors</b>
           </td>
           <td>GM</td>
-          <td>TBR</td>
+          <td>    
+            <a href="https://www.sciencedirect.com/science/article/pii/S0004370223002084">NeSy Survey</a>
+          </td> 
         </tr>
       </tbody>
     </table>
