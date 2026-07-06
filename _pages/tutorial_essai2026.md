@@ -55,7 +55,7 @@ section who will be presenting that section's material
           </td>
           <td>GM</td>
           <td>
-            <td><a href="https://openreview.net/forum?id=IF5vnqxBEW">What’s in the Bottle? A Survey and Roadmap of Concept Bottleneck Models</a></td>
+            <a href="https://openreview.net/forum?id=IF5vnqxBEW">What’s in the Bottle? A Survey and Roadmap of Concept Bottleneck Models</a>
           </td>
         </tr>
         <tr>
