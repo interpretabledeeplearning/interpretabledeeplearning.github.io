@@ -17,17 +17,6 @@ nav: false
 </div>
 
 
-## Material
-
-Slides will be posted here after the event.
-
-If we get access to a recording of our presentation, we will include it in this
-section as soon as possible.
-
-For a **complete bibliography** of the topics and works discussed in this tutorial,
-please refer to our [resources](/resources/) section.
-
-
 ## Schedule
 
 Below is the expected (rough) schedule for this tutorial where we indicate next to each
@@ -85,6 +74,15 @@ section who will be presenting that section's material
 #### Required Background
 
 Our material will assume a basic knowledge of ML (e.g., foundations of supervised learning, experimental design, basic probabilistic modelling, etc.), with particular emphasis on a solid Deep Learning foundation (e.g., tensor calculus, neural networks, backpropagation, etc.). Concepts that may require mathematical tools/expertise beyond those one would expect to be shared among the AI community will be (re)introduced in our tutorial.
+
+
+## Additional Material
+
+If we get access to a recording of our presentation, we will include it in this
+section as soon as possible.
+
+For a **complete bibliography** of the topics and works discussed in this tutorial,
+please refer to our [resources](/resources/) section.
 
 
 ## Presenters
