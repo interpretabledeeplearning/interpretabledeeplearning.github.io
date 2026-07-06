@@ -65,7 +65,7 @@ section who will be presenting that section's material
           </td>
           <td>GM</td>
           <td>    
-            <a href="https://www.sciencedirect.com/science/article/pii/S0004370223002084">NeSy Survey</a>
+            <a href="https://www.sciencedirect.com/science/article/pii/S0004370223002084">From statistical relational to neurosymbolic artificial intelligence: A survey</a>
           </td> 
         </tr>
       </tbody>
