@@ -8,7 +8,7 @@ nav: false
 <h2 class="text-center tutorial-main-title">Probabilistic Concept Bottleneck Models</h2>
 
 <div style="margin: auto; text-align: center;">
-  Tutorial to be hold at <a href="https://www.auai.org/uai2026/tutorials">UAI 2026</a><br>
+  Tutorial to be held at <a href="https://www.auai.org/uai2026/tutorials">UAI 2026</a><br>
 
   Amsterdam, Netherlands<br>
 

@@ -8,11 +8,11 @@ nav: false
 <h2 class="text-center tutorial-main-title">Foundations of Concept-Based Interpretable Deep Learning</h2>
 
 <div style="margin: auto; text-align: center;">
-  Tutorial to be hold at <a href="https://essai2026.eu/program.php#id-13">ESSAI 2026</a><br>
+  Tutorial to be held at <a href="https://essai2026.eu/program.php#id-13">ESSAI 2026</a><br>
 
   Vienna, Austria<br>
 
-  July 6, 2026<br>
+  July 6-10, 2026<br>
 
 </div>
 
