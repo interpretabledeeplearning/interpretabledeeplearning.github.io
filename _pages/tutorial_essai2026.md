@@ -42,25 +42,18 @@ section who will be presenting that section's material
         <tr>
           <th>Day</th>
           <th>Topic</th>
-          <th>Slides</th>
           <th>Presenter</th>
           <th>Main reference</th>
         </tr>
         <tr>
           <td>Day 1</td>
-          <td>
-            <b>Interpretability Theory</b>
-          </td>
           <td><a href="/assets/documents/2026-07-ESSAI - Part 1.1.pdf">Interpretability Theory</a></td>
           <td>PB</td>
           <td><a href="https://arxiv.org/abs/2606.12289">The Standard Interpretable Model</a></td>
         </tr>
         <tr>
           <td>Day 2</td>
-          <td>
-            <b>Blueprint for interpretable models + interpretability in PyTorch</b>
-          </td>
-          <td><a href="/assets/documents/2026-07-ESSAI - Part 1.2.pdf">Interpretability Blueprint and PyC</a></td>
+          <td><a href="/assets/documents/2026-07-ESSAI - Part 1.2.pdf">Blueprint for interpretable models + interpretability in PyTorch</a></td>
           <td>PB</td>
           <td>    
             <a href="https://pytorch-concepts.readthedocs.io/en/latest/">PyC: interpretable models in PyTorch</a>
@@ -71,7 +64,6 @@ section who will be presenting that section's material
           <td>
             <b>Concept representations</b>
           </td>
-          <td></td>
           <td>GM</td>
           <td>TBR</td>
         </tr>
@@ -80,7 +72,6 @@ section who will be presenting that section's material
           <td>
             <b>Concept-based predictors</b>
           </td>
-          <td></td>
           <td>GM</td>
           <td>    
             <a href="https://www.sciencedirect.com/science/article/pii/S0004370223002084">NeSy Survey</a>
