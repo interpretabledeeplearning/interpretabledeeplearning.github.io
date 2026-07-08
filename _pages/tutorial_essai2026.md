@@ -50,9 +50,7 @@ section who will be presenting that section's material
         </tr>
         <tr>
           <td>Day 3</td>
-          <td>
-            <b>Concept representations</b>
-          </td>
+           <td><a href="/assets/documents/2026-07-ESSAI - Part 2.1.pdf">Concept Representations</a></td>
           <td>GM</td>
           <td>
             <a href="https://openreview.net/forum?id=IF5vnqxBEW">What’s in the Bottle? A Survey and Roadmap of Concept Bottleneck Models</a>
