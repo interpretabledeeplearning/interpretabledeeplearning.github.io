@@ -59,7 +59,7 @@ section who will be presenting that section's material
         <tr>
           <td>Day 4</td>
           <td>
-            <b>Concept-based predictors</b>
+            <a href="/assets/documents/2026-07-ESSAI - Part 2.1.pdf">Concept-based Task Predictors</a>
           </td>
           <td>GM</td>
           <td>    
