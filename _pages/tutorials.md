@@ -9,10 +9,10 @@ children:
 #  - title: YouTube
 #    permalink: /tutorials/youtube/
 #  - title: divider
-  - title: UAI 2026 (upcoming)
+  - title: UAI 2026
     permalink: /tutorials/tutorial_uai2026/
   - title: divider
-  - title: ESSAI 2026 (upcoming)
+  - title: ESSAI 2026
     permalink: /tutorials/tutorial_essai2026/
   - title: divider
   - title: AAAI 2026
