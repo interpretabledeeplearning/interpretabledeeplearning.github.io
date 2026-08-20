@@ -38,7 +38,7 @@ section who will be presenting that section's material
         </tr>
         <tr>
           <td>Part 1</td>
-          <td>Interpretability Theory
+          <td><b>Interpretability Theory</b></td>
           <td>PB</td>
           <td><a href="https://arxiv.org/abs/2606.12289">The Standard Interpretable Model</a></td>
         </tr>
@@ -64,7 +64,7 @@ section who will be presenting that section's material
         </tr>
         <tr>
           <td>Part 4</td>
-          <td>PyTorch Concepts</td>
+          <td><b>PyTorch Concepts</b></td>
           <td>PB</td>
           <td>    
             <a href="https://pytorch-concepts.readthedocs.io/en/latest/">PyC: interpretable models in PyTorch</a>
