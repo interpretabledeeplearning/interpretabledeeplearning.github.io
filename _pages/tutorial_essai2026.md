@@ -110,7 +110,7 @@ Or use the following bibtex entry:
 
 ```latex
 @misc{interpretabledl2026essai,
-  title        = {Foundations of Concept-Based Interpretable Deep Learning (ESSAI-2026)},
+  title        = {Foundations of Concept-Based Interpretable Deep Learning},
   author       = {Marra G. and Barbiero P.},
   year         = {2026},
   howpublished = {Advanced course at the European Summer School on Artificial Intelligence (ESSAI)},
