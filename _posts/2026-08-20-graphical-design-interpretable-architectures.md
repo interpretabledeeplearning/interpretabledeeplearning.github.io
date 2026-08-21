@@ -46,7 +46,7 @@ $$
 f(x_k,w_{kri},t_{krij}) = \sum_i \sigma(x_{k}w_{kri}) t_{krij}
 $$
 
-hides that the tensor manipulations act on individual features \(k\) of \(x\) independently. We must carefully work through the whole expression to see this. This process requires time, effort, and it is intrinsically prone to errors. Graphical notations, such as probabilistic graphical models and flowcharts, are commonly used specifically to compensate the shortcomings of symbolic representations and convey immediate insights:
+hides that the tensor manipulations act on individual features \\(k\\) of \\(x\\) independently. We must carefully work through the whole expression to see this. This process requires time, effort, and it is intrinsically prone to errors. Graphical notations, such as probabilistic graphical models and flowcharts, are commonly used specifically to compensate the shortcomings of symbolic representations and convey immediate insights:
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Alternatives.png" class="img-fluid" %}
 
@@ -62,7 +62,7 @@ We first introduce the fragment of Penrose notation we need. We then use it to a
 
 ### Tensors
 
-In this work, a tensor of order \(k\) is an array with \(k\) indices, \(T \in \mathbb{R}^{n_1 \times \dots \times n_k}, n_i,k\in \mathbb{N}\). A scalar has order \(0\), a vector order \(1\), a matrix order \(2\), and so on. The table below lists common tensors, how to generate each at random in PyTorch, and its geometric meaning. In our diagrams, a tensor is a circle with "legs". Each leg stands for one geometric dimension, that is, one array index.
+In this work, a tensor of order \\(k\\) is an array with \\(k\\) indices, \\(T \in \mathbb{R}^{n_1 \times \dots \times n_k}, n_i,k\in \mathbb{N}\\). A scalar has order \\(0\\), a vector order \\(1\\), a matrix order \\(2\\), and so on. The table below lists common tensors, how to generate each at random in PyTorch, and its geometric meaning. In our diagrams, a tensor is a circle with "legs". Each leg stands for one geometric dimension, that is, one array index.
 
 <div class="table-responsive">
 <table class="table">
@@ -179,7 +179,7 @@ The table below lists the most common tensor operations. These form the building
 
 With linear algebra fresh in mind, we can now use the graphical notation to design AI models. As introductory examples, we design two familiar models, a linear model <d-cite key="berkson1944application,cox1958regression"></d-cite> and a multi-layer perceptron <d-cite key="rumelhart1986learning"></d-cite>, before moving to more advanced cases, such as self-attention <d-cite key="vaswani2017attention"></d-cite>.
 
-A linear model <d-cite key="berkson1944application,cox1958regression"></d-cite> is one of the oldest models in statistics, yet it remains an important baseline for interpretable machine learning, and it forms the backbone of more complex operations in frontier models. A linear model is a matrix-vector product followed by an activation function. The vector \(x \in \mathbb{R}^d\) holds the features of an input sample, and the matrix \(W \in \mathbb{R}^{h \times d}\) holds the model's learnable parameters. Since this model usually has a non-linear activation which makes the diagram asymmetric, we extend Penrose diagrams drawing the input node in gray and performing tensor operations from left to right (or top-down):
+A linear model <d-cite key="berkson1944application,cox1958regression"></d-cite> is one of the oldest models in statistics, yet it remains an important baseline for interpretable machine learning, and it forms the backbone of more complex operations in frontier models. A linear model is a matrix-vector product followed by an activation function. The vector \\(x \in \mathbb{R}^d\\) holds the features of an input sample, and the matrix \\(W \in \mathbb{R}^{h \times d}\\) holds the model's learnable parameters. Since this model usually has a non-linear activation which makes the diagram asymmetric, we extend Penrose diagrams drawing the input node in gray and performing tensor operations from left to right (or top-down):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Linear.png" class="img-fluid" %}
 
@@ -197,7 +197,7 @@ A linear model <d-cite key="berkson1944application,cox1958regression"></d-cite> 
 </table>
 </div>
 
-We can apply a linear model to many inputs at once by stacking samples \(x_j\) into a batch tensor \(X \in \mathbb{R}^{b \times d}\). We can also stack several linear models on top of each other. This gives a multi-layer perceptron (MLP) <d-cite key="rumelhart1986learning"></d-cite>:
+We can apply a linear model to many inputs at once by stacking samples \\(x_j\\) into a batch tensor \\(X \in \mathbb{R}^{b \times d}\\). We can also stack several linear models on top of each other. This gives a multi-layer perceptron (MLP) <d-cite key="rumelhart1986learning"></d-cite>:
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/MLP.png" class="img-fluid" %}
 
@@ -224,17 +224,17 @@ $$
 </table>
 </div>
 
-Self-attention <d-cite key="vaswani2017attention"></d-cite> is a key, more complex operation in frontier AI models. This operation projects an input sequence \(Z\) of \(t\) tokens into a query \(q\), key \(k\), and value \(v\) embeddings. For each pair of tokens \((t,t_p)\), self-attention scores how relevant token \(t_p\) is to token \(t\). It then uses these relevance scores as weights to combine the value vectors.
+Self-attention <d-cite key="vaswani2017attention"></d-cite> is a key, more complex operation in frontier AI models. This operation projects an input sequence \\(Z\\) of \\(t\\) tokens into a query \\(q\\), key \\(k\\), and value \\(v\\) embeddings. For each pair of tokens \\((t,t_p)\\), self-attention scores how relevant token \\(t_p\\) is to token \\(t\\). It then uses these relevance scores as weights to combine the value vectors.
 
-Since the tensor manipulations are a bit more complex, we break down the self-attention mechanism into simple atomic manipulations. The first step is to "copy" the input \(Z\) since we need to reuse this tensor multiple times. In our notation, copying a tensor can be expressed by branching all its legs. We use the index \(t_p\) for the legs of the second and third copy of \(Z\) as these legs will be used to index key and value tokens the query can attend to:
+Since the tensor manipulations are a bit more complex, we break down the self-attention mechanism into simple atomic manipulations. The first step is to "copy" the input \\(Z\\) since we need to reuse this tensor multiple times. In our notation, copying a tensor can be expressed by branching all its legs. We use the index \\(t_p\\) for the legs of the second and third copy of \\(Z\\) as these legs will be used to index key and value tokens the query can attend to:
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Step1.png" class="img-fluid" %}
 
-Each copy of the tensor \(Z\) gets multiplied by a matrix \(W \in \mathbb{R}^{d \times e}\) to produce key, query, and value tensors \(k,q,v \in \mathbb{R}^{t \times e}\):
+Each copy of the tensor \\(Z\\) gets multiplied by a matrix \\(W \in \mathbb{R}^{d \times e}\\) to produce key, query, and value tensors \\(k,q,v \in \mathbb{R}^{t \times e}\\):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Step2.png" class="img-fluid" %}
 
-For each pair of tokens \((t,t_p)\), we compute how much the query token \(t\) attends to the key token \(t_p\):
+For each pair of tokens \\((t,t_p)\\), we compute how much the query token \\(t\\) attends to the key token \\(t_p\\):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Step3.png" class="img-fluid" %}
 
@@ -242,7 +242,7 @@ We then normalise these "affinity" scores into probability values using a softma
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Step4.png" class="img-fluid" %}
 
-And finally we can compute the new embedding of the token \(t\) as a convex combination of value embeddings \(v\) weighted by their respective probability score:
+And finally we can compute the new embedding of the token \\(t\\) as a convex combination of value embeddings \\(v\\) weighted by their respective probability score:
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Step5.png" class="img-fluid" %}
 
@@ -284,7 +284,7 @@ In a single diagram we can draw self-attention as follows:
 </table>
 </div>
 
-From here on, diagrams stay minimal: we draw only the indices involved in a contraction. PyTorch supports this directly through ellipsis notation, which lets a tensor operation generalize to any number of batch dimensions. For example, an operation with three preserved indices, batch \(b\), token \(t\), and head \(q\), written as
+From here on, diagrams stay minimal: we draw only the indices involved in a contraction. PyTorch supports this directly through ellipsis notation, which lets a tensor operation generalize to any number of batch dimensions. For example, an operation with three preserved indices, batch \\(b\\), token \\(t\\), and head \\(q\\), written as
 
 ```
 einsum('btqij,btqjk->btqik', A, B)
@@ -298,15 +298,15 @@ einsum('...ij,...jk->...ik', A, B)
 
 ## Graphical design of interpretable architectures
 
-Interpretable architectures can be generally segmented into three distinct components <d-cite key="koh2020concept,alvarez2018towards,chen2019looks,barbiero2026standard"></d-cite>: a *backbone* that maps input \(x\) to a hidden representation \(z\), a *concept encoding map* that turns \(z\) into human-meaningful concepts \(c\), and a *concept composition map* that turns those concepts into a task prediction \(y\).
+Interpretable architectures can be generally segmented into three distinct components <d-cite key="koh2020concept,alvarez2018towards,chen2019looks,barbiero2026standard"></d-cite>: a *backbone* that maps input \\(x\\) to a hidden representation \\(z\\), a *concept encoding map* that turns \\(z\\) into human-meaningful concepts \\(c\\), and a *concept composition map* that turns those concepts into a task prediction \\(y\\).
 
 Most interpretable architectures use specific tensor operations in their concept encoding and concept composition maps to meet interpretability constraints <d-cite key="rudin2019stop,barbiero2026standard"></d-cite>. Here we analyse the most common and recurring of these operations, shared across different families of interpretable models.
 
 ### Concept encoding maps
 
-Concept encoding maps transform latent representations \(z\) into representations \(c\), known as concepts, that are constrained to align with human semantics. The most common maps in the literature, in order of increasing tensor-manipulation complexity, are probes such as concept activation vectors (CAVs) <d-cite key="kim2018interpretability"></d-cite> and sparse autoencoders (SAEs) <d-cite key="ranzato2006efficient,huben2024sparse,templeton2026scaling"></d-cite>, concept bottlenecks <d-cite key="koh2020concept,espinosa2022concept"></d-cite>, and prototype-based models <d-cite key="chen2019looks,colamonaco2026prototype"></d-cite>.
+Concept encoding maps transform latent representations \\(z\\) into representations \\(c\\), known as concepts, that are constrained to align with human semantics. The most common maps in the literature, in order of increasing tensor-manipulation complexity, are probes such as concept activation vectors (CAVs) <d-cite key="kim2018interpretability"></d-cite> and sparse autoencoders (SAEs) <d-cite key="ranzato2006efficient,huben2024sparse,templeton2026scaling"></d-cite>, concept bottlenecks <d-cite key="koh2020concept,espinosa2022concept"></d-cite>, and prototype-based models <d-cite key="chen2019looks,colamonaco2026prototype"></d-cite>.
 
-**Sparse encoders** <d-cite key="ranzato2006efficient"></d-cite> map latent representations \(z \in \mathbb{R}^d\) into the sparse activations \(c \in \mathbb{R}^k\) via a sparse linear map \(W \in \mathbb{R}^{d \times k}\) with \(k \gg d\)
+**Sparse encoders** <d-cite key="ranzato2006efficient"></d-cite> map latent representations \\(z \in \mathbb{R}^d\\) into the sparse activations \\(c \in \mathbb{R}^k\\) via a sparse linear map \\(W \in \mathbb{R}^{d \times k}\\) with \\(k \gg d\\)
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Probe.png" class="img-fluid" %}
 
@@ -324,7 +324,7 @@ Concept encoding maps transform latent representations \(z\) into representation
 </table>
 </div>
 
-**Concept bottlenecks** <d-cite key="koh2020concept"></d-cite> map a latent representation \(z\) into the concept representation \(c\) via a supervised linear map
+**Concept bottlenecks** <d-cite key="koh2020concept"></d-cite> map a latent representation \\(z\\) into the concept representation \\(c\\) via a supervised linear map
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Bottleneck.png" class="img-fluid" %}
 
@@ -342,9 +342,9 @@ Concept encoding maps transform latent representations \(z\) into representation
 </table>
 </div>
 
-In both cases the tensor operation is identical. The difference lies in the loss and in what the concepts mean: sparse probes recover concept semantics post-hoc (through additional data and labels), while concept bottlenecks build concept semantics into the loss from the start using ground-truth concept annotations \(c^{[h]}\).
+In both cases the tensor operation is identical. The difference lies in the loss and in what the concepts mean: sparse probes recover concept semantics post-hoc (through additional data and labels), while concept bottlenecks build concept semantics into the loss from the start using ground-truth concept annotations \\(c^{[h]}\\).
 
-**Concept embedding bottlenecks** <d-cite key="espinosa2022concept"></d-cite> map a latent representation \(z\) into a high dimensional concept representation \(u \in \mathbb{R}^{d \times k \times s \times e}\) where \(s\) is the concept cardinality and \(e\) the embedding size. This concept representation is then used to compute concept predictions \(c_k\):
+**Concept embedding bottlenecks** <d-cite key="espinosa2022concept"></d-cite> map a latent representation \\(z\\) into a high dimensional concept representation \\(u \in \mathbb{R}^{d \times k \times s \times e}\\) where \\(s\\) is the concept cardinality and \\(e\\) the embedding size. This concept representation is then used to compute concept predictions \\(c_k\\):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Bottleneck_embeddings.png" class="img-fluid" %}
 
@@ -366,7 +366,7 @@ In both cases the tensor operation is identical. The difference lies in the loss
 </table>
 </div>
 
-**Prototype-based concept maps** <d-cite key="chen2019looks,colamonaco2026prototype"></d-cite> need a genuinely different tensor operation. We can think of prototypes as reference examples that tell us whether a concept is active. For instance, the embedding of an apple or a ball can serve as a positive "prototypical example" for the concept round, and a fridge or a book as a negative example. Ground-truth prototype labels sit in the tensor \(\pi^{[h]} \in \mathbb{R}^{p \times k}\), so each concept \(k\) has \(p\) labelled prototypes. For a concept \(k\) and an input embedding \(z \in \mathbb{R}^d\), we compare \(z\) against every prototype in \(P \in \mathbb{R}^{d \times p \times k}\) and compute the concept label based on input-prototype similarity. For instance, if \(z\) is closer to the prototypes for book and fridge than to the prototypes for apple and ball, then the predicted label for round should sit close to \(0\).
+**Prototype-based concept maps** <d-cite key="chen2019looks,colamonaco2026prototype"></d-cite> need a genuinely different tensor operation. We can think of prototypes as reference examples that tell us whether a concept is active. For instance, the embedding of an apple or a ball can serve as a positive "prototypical example" for the concept round, and a fridge or a book as a negative example. Ground-truth prototype labels sit in the tensor \\(\pi^{[h]} \in \mathbb{R}^{p \times k}\\), so each concept \\(k\\) has \\(p\\) labelled prototypes. For a concept \\(k\\) and an input embedding \\(z \in \mathbb{R}^d\\), we compare \\(z\\) against every prototype in \\(P \in \mathbb{R}^{d \times p \times k}\\) and compute the concept label based on input-prototype similarity. For instance, if \\(z\\) is closer to the prototypes for book and fridge than to the prototypes for apple and ball, then the predicted label for round should sit close to \\(0\\).
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Prototype_concepts.png" class="img-fluid" %}
 
@@ -396,7 +396,7 @@ In both cases the tensor operation is identical. The difference lies in the loss
 
 In most interpretability works, the concept composition map is a simple linear model: self-explaining neural nets <d-cite key="alvarez2018towards"></d-cite>, sparse autoencoders <d-cite key="huben2024sparse,templeton2026scaling"></d-cite>, concept bottleneck models <d-cite key="koh2020concept"></d-cite>, all use linear models. A few exceptions are worth discussing: neural additive models <d-cite key="agarwal2021neural"></d-cite>, concept embedding predictors <d-cite key="espinosa2022concept"></d-cite>, and mixtures of linear models <d-cite key="alvarez2018towards,barbiero2023interpretable,debot2024interpretable,desantis2026mixtureconceptbottleneckexperts"></d-cite>.
 
-**Neural additive models** <d-cite key="agarwal2021neural"></d-cite> transform concept activations \(c\) independently using a different MLP for each concept \(k\) and output task \(r\). Then, for each task, they sum the outputs of the MLP of each concept to predict target \(y_r\):
+**Neural additive models** <d-cite key="agarwal2021neural"></d-cite> transform concept activations \\(c\\) independently using a different MLP for each concept \\(k\\) and output task \\(r\\). Then, for each task, they sum the outputs of the MLP of each concept to predict target \\(y_r\\):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/NAM.png" class="img-fluid" %}
 
@@ -430,7 +430,7 @@ In most interpretability works, the concept composition map is a simple linear m
 </table>
 </div>
 
-**Concept embedding predictors** <d-cite key="espinosa2022concept"></d-cite> rescale concept embeddings \(u\) (e.g., generated by a concept embedding bottleneck) using concept activations \(c\) before projecting into the output space \(r\):
+**Concept embedding predictors** <d-cite key="espinosa2022concept"></d-cite> rescale concept embeddings \\(u\\) (e.g., generated by a concept embedding bottleneck) using concept activations \\(c\\) before projecting into the output space \\(r\\):
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Predictor_embeddings.png" class="img-fluid" %}
 
@@ -460,7 +460,7 @@ In most interpretability works, the concept composition map is a simple linear m
 </table>
 </div>
 
-**Mixtures of linear models** <d-cite key="desantis2026mixtureconceptbottleneckexperts"></d-cite> compute different predictions for the target \(y_r\) using \(m\) different linear models. Then each prediction is weighted by the probability of selecting a specific linear model:
+**Mixtures of linear models** <d-cite key="desantis2026mixtureconceptbottleneckexperts"></d-cite> compute different predictions for the target \\(y_r\\) using \\(m\\) different linear models. Then each prediction is weighted by the probability of selecting a specific linear model:
 
 {% include figure.liquid path="assets/img/posts/2026-08-20-graphical-design-interpretable-architectures/Mixture_of_linear_models.png" class="img-fluid" %}
 
