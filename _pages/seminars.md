@@ -1,7 +1,7 @@
 ---
 layout: page
-permalink: /reading_group/
-title: Reading Group
+permalink: /seminars/
+title: Seminars
 description: ""
 nav: true
 nav_order: 1
@@ -9,7 +9,7 @@ nav_order: 1
 
 <script src="{{ '/assets/js/calendar.js' | relative_url }}"></script>
 
-This reading group brings together researchers and practitioners interested in interpretable deep learning.
+These seminars bring together researchers and practitioners interested in interpretable deep learning.
 We discuss recent papers, share insights, and explore methods that make deep learning models more transparent and understandable.
 Each session features paper presentations, discussions, and Q&A, with recordings available on our YouTube channel.
 

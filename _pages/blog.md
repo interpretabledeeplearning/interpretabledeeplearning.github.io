@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /blog/
-title: Blog
+title: Intrinsic Interpretability Thread
 nav: true
 nav_order: 3
 pagination:

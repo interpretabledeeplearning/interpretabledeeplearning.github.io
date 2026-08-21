@@ -18,10 +18,10 @@ We are a community of researchers interested in <emph>Interpretable Deep Learnin
 <div class="container-fluid section-grid">
   <div class="row justify-content-center mb-2">
     <div class="col-10 col-sm-6 col-md-6 col-lg-4 mb-4">
-      <a href="/reading_group/" class="card-link-reset">
+      <a href="/seminars/" class="card-link-reset">
         <div class="card hoverable text-center feature-card">
           <div class="feature-icon">📚</div>
-          <h5 class="feature-title">Reading Group</h5>
+          <h5 class="feature-title">Seminars</h5>
           <p class="feature-text">Join regular discussions on the latest interpretability research.</p>
         </div>
       </a>
@@ -36,6 +36,17 @@ We are a community of researchers interested in <emph>Interpretable Deep Learnin
       </a>
     </div>
     <div class="col-10 col-sm-6 col-md-6 col-lg-4 mb-4">
+      <a href="/blog/" class="card-link-reset">
+        <div class="card hoverable text-center feature-card">
+          <div class="feature-icon">📢</div>
+          <h5 class="feature-title">Intrinsic Interpretability Thread</h5>
+          <p class="feature-text">News, tutorials, and deep dives on intrinsic interpretability.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10 col-sm-6 col-md-6 col-lg-4 mb-4">
       <a href="/resources/" class="card-link-reset">
         <div class="card hoverable text-center feature-card">
           <div class="feature-icon">📖</div>
@@ -44,8 +55,6 @@ We are a community of researchers interested in <emph>Interpretable Deep Learnin
         </div>
       </a>
     </div>
-  </div>
-  <div class="row justify-content-center">
     <div class="col-10 col-sm-6 col-md-6 col-lg-4 mb-4">
       <a href="https://join.slack.com/t/pyc-yu37757/shared_invite/zt-3jdcsex5t-LqkU6Plj5rxFemh5bRhe_Q" class="card-link-reset">
         <div class="card hoverable text-center feature-card">
